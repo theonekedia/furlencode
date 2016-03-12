@@ -1,0 +1,46 @@
+<div class="login-container">
+  <h3>Employee Login</h3>
+  <%= flash[:notice] if flash[:notice] %>
+  <%= form_tag({:controller => "/employees", :action => "employee_login"}, :method => "post", :class => "form-inline") do %>
+    <div class="box">
+      Email:
+    </div>
+    <div class="input"> <%= text_field_tag(:email) %></div>
+    <br>
+    <div class="box">Password: 
+    </div>
+      <div class="input"><%= password_field_tag(:password) %></div>
+      <br>
+    <div class="box"> 
+      <%= submit_tag("Login") %>
+    </div>
+  <% end %>
+</div>
+<style>
+  .login-container{
+    text-align: center;
+    margin:auto;
+    width: 100%;
+    margin-top: 40px;
+  }
+  .box,.input{
+    display: inline-block;
+  }
+  .box{
+    width: 100px;
+    /*margin-right: 20px;*/
+  }
+  input{
+    width: 250px;
+    height: 40px;
+  }
+  input[type=submit]{
+    background: #ff5722;
+    border: none;
+    margin-top: 10px;
+    margin-left: -25px;
+  }
+  form{
+    margin-top: 40px;
+  }
+</style>

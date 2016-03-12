@@ -71,9 +71,9 @@ class ApiController < ApplicationController
 		response = Hash.new
 		stores = Store.where(longitude: params[:longitude], latitude: params[:latitude])
 		if stores.length == 0
-			store = store.new(store_params)
+			store = Store.new(store_params)
 		    if store.save!
-		    	response.store = Store.where(id: store.id).select(:id,:name,:latitude,:longitude,:rating).as_json
+		    	response['store'] = Store.where(id: store.id).select(:id,:name,:latitude,:longitude,:rating).as_json
 		    	response.merge! ::Api::ApiStatusList::OK
 		        render json: response
 		    else

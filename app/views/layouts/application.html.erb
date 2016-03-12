@@ -7,8 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<div id="notification"></div>
+<div class="head">
+	<div class="logo">
+		<a href="/admin">
+			<span class="logo-1">Furlencode</span>
+		</a>
+		<% if loggedin_employee %>
+			<div class="pull-right">
+				<span style="color:black;font-size:14px"><%#= @employee.email.split('@').first.capitalize %></span>
+				<a href="<%= logout_employee_path %>">Logout</a>
+			</div>
+		<% end %>
+	</div>
+</div>
+<span id="toast">Loading...</span>
+<span id="notification">This is notification</span>
+<div class="container">
+	<%= yield %>
+</div>
 </body>
 </html>

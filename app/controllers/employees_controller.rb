@@ -60,7 +60,34 @@ class EmployeesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def employee_login
+    if @authenticated_employee = Employee.authenticate(params[:email], params[:password])
+      status = create_employee_session(@authenticated_employee.id)
+      location_to_redirect = status['redirect']
+      if location_to_redirect.nil?
+        redirect_to "/employees"
+      else
+        redirect_to location_to_redirect
+      end
+    else
+      render action: "employee_sign_in"
+    end
+  end
+  
+  def employee_sign_in
+    if loggedin_employee.nil?
+      respond_to do |format|
+        format.html # employee_sign_in.html.erb
+      end
+    else
+      redirect_to employee_path(loggedin_employee)
+    end
+  end
+  
+  def employee_logout
+    destroy_employee_session
+    redirect_to root_path
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
