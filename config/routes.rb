@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :users do
+    resources :visits
+  end
+  namespace :stores do
+    resources :reviews
+  end
+  resources :stores
+  resources :users
   resources :employees
   match 'tracker' => 'trackers#test_method', via: [:put,:get,:options,:post]
   resources :trackers

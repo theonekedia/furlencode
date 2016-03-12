@@ -1,0 +1,33 @@
+<%= form_for(@stores_review) do |f| %>
+  <% if @stores_review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stores_review.errors.count, "error") %> prohibited this stores_review from being saved:</h2>
+
+      <ul>
+      <% @stores_review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :liked %><br>
+    <%= f.check_box :liked %>
+  </div>
+  <div class="field">
+    <%= f.label :critic %><br>
+    <%= f.text_area :critic %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :store_id %><br>
+    <%= f.number_field :store_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
