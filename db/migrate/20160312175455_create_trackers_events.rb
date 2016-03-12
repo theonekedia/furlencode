@@ -4,8 +4,7 @@ class CreateTrackersEvents < ActiveRecord::Migration
       t.integer :tracker_id
       t.string :event_name
       t.string :value
-      t.string :referrer
-
+      
       t.timestamps null: false
     end
   end

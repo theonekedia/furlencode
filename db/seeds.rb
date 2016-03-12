@@ -17,9 +17,9 @@ end
 puts "Finished Category"
 
 
-employee = Employee.create(username: 'hobbyst', password: '123456')
-employee = Employee.create(username: 'theonekedia', password: '123456')
-employee = Employee.create(username: 'furlenco', password: '123456')
+employee = Employee.create(username: 'hobbyst', password: '123456', website: 'hobbyst.co')
+employee = Employee.create(username: 'theonekedia', password: '123456', website: 'localhost')
+employee = Employee.create(username: 'furlenco', password: '123456', website: 'furlenco.com')
 
 
 store = ['Cigrate', "Snacks", "Chai/Coffee", "Petrol", 'Medical shop', 'Hospital']

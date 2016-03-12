@@ -3,6 +3,6 @@ class SignupJob < ActiveJob::Base
 
   def perform(*args)
   	user_id = args[0]
-    UserSignupMailer.signup(user_id).deliver_later
+    UserSignup.signup(user_id).deliver_later
   end
 end

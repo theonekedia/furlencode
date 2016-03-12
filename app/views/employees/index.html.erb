@@ -1,0 +1,6 @@
+<% @employee %>
+<% @trackers.each do |tracker| %>
+	<% tracker.events.each do |event| %>
+		<%= event.event_name %>
+	<% end %>
+<% end %>

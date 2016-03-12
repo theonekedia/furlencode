@@ -14,7 +14,8 @@ class TrackersController < ApplicationController
 
   def test_method
     tracker = Tracker.new(created_at: Time.at((params[:createdAt].to_i)/1000), uid: params[:userId],
-                          page: params[:page], event: params[:event], data: params[:data])
+                          page: params[:page], event: params[:event], data: params[:data], 
+                          url: params[:url], referrer: params[:referrer])
     tracker.save!
     render nothing: true
   end

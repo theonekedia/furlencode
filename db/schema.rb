@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20160312175455) do
   create_table "employees", force: :cascade do |t|
     t.string   "username"
     t.string   "password"
+    t.string   "email"
+    t.string   "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,15 +56,17 @@ ActiveRecord::Schema.define(version: 20160312175455) do
     t.string   "event"
     t.string   "data"
     t.string   "page"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "url"
+    t.string   "referrer"
+    t.integer  "employee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "trackers_events", force: :cascade do |t|
     t.integer  "tracker_id"
     t.string   "event_name"
     t.string   "value"
-    t.string   "referrer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
