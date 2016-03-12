@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  event: MyString
+  data: MyString
+  page: MyString
+
+two:
+  uid: MyString
+  event: MyString
+  data: MyString
+  page: MyString
