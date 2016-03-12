@@ -1,8 +1,14 @@
 class User < ActiveRecord::Base
-	before_create :create_and_update_password
-  	before_update :update_password
-  	validates :email, :presence => true, :uniqueness => true#, email: true
-  	# validates :phone, :presence => true, :uniqueness => true
+  before_create :create_and_update_password
+  before_update :update_password
+  validates :email, :presence => true, :uniqueness => true#, email: true
+
+  after_create :send_mail
+
+  def send_mail
+    
+  end
+
 	protected 
   	####### Update password of user #######
   	def update_password

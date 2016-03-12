@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 20160312091202) do
 
   create_table "stores", force: :cascade do |t|
     t.string   "name"
-    t.string   "coordinates"
-    t.string   "rating"
+    t.point    "coordinates"
+    t.integer  "rating"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -61,8 +62,6 @@ ActiveRecord::Schema.define(version: 20160312091202) do
   create_table "users_visits", force: :cascade do |t|
     t.datetime "date"
     t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

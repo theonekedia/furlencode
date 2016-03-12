@@ -15,3 +15,22 @@
 /log/*
 !/log/.keep
 /tmp
+
+Gemfile.lock
+/config/database.yml
+/config/secrets.yml
+/config/application.yml
+/config/newrelic.yml
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/log/*.log.*
+/tmp
+/db/schema.rb
+/public/assets/*
+.DS_Store
+*._.DS_Store
+*.DS_Store
+erd.pdf
+dump.rdb
+public/uploads/*
+.byebug_history

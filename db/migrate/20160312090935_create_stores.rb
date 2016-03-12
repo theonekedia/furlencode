@@ -3,10 +3,10 @@ class CreateStores < ActiveRecord::Migration
     create_table :stores do |t|
       t.string :name
       t.point :coordinates, srid: 4326, :geographic => true
-      t.string :rating
+      t.integer :rating
+      t.integer	:user_id
 
       t.timestamps null: false
     end
-    add_index :stores, :coordinates, spatial: true
   end
 end

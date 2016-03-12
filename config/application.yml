@@ -1,0 +1,10 @@
+development:
+  email: 'hello@hobbyst.co'
+  password: 'myhobby123'
+  email_bcc: 'theone.kedia@gmail.com'
+
+production:
+  email: 'hello@hobbyst.co'
+  password: 'myhobby123'
+  email_bcc: 'theone.kedia@gmail.com'
+  
