@@ -11,11 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312091202) do
+ActiveRecord::Schema.define(version: 20160312140643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string   "username"
@@ -26,11 +31,12 @@ ActiveRecord::Schema.define(version: 20160312091202) do
 
   create_table "stores", force: :cascade do |t|
     t.string   "name"
-    t.point    "coordinates"
+    t.point    "latitude"
+    t.point    "longitude"
     t.integer  "rating"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stores_reviews", force: :cascade do |t|

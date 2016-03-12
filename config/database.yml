@@ -5,11 +5,9 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postgis
+  adapter: postgresql
   pool: 5
   timeout: 5000
-  schema_search_path: "public,postgis"
-  host: localhost
 
 development:
   <<: *default

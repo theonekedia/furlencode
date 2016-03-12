@@ -1,1 +1,1 @@
-json.extract! @store, :id, :name, :coordinates, :rating, :created_at, :updated_at
+json.extract! @store, :id, :name, :latitude, :longitude, :rating, :created_at, :updated_at

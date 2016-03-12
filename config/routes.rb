@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'categories#index'
+  resources :categories
   namespace :users do
     resources :visits
   end
@@ -8,8 +10,16 @@ Rails.application.routes.draw do
   resources :stores
   resources :users
   resources :employees
-  match 'tracker' => 'trackers#test_method', via: [:put,:get,:options,:post]
+  match 'tracker' => 'trackers#test_method', via: [:put, :post]
   resources :trackers
+  match 'api/signup' => 'api#signup', via: [:put,:post]
+  match 'api/login' => 'api#login', via: [:put,:get,:post]
+  match 'api/categories' => 'api#categories', via: [:get]
+  match 'api/categories' => 'api#new_categories', via: [:put,:post]
+  match 'api/stores' => 'api#stores', via: [:get]
+  match 'api/stores' => 'api#new_store', via: [:put,:post]
+  match 'api/store/:id' => 'api#store', via: [:get]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

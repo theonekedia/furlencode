@@ -1,7 +1,8 @@
 class SignupJob < ActiveJob::Base
-  queue_as :default
+  queue_as :signup
 
   def perform(*args)
-    # Do something later
+  	user_id = args[0]
+    UserSignupMailer.signup(user_id).deliver_later
   end
 end
