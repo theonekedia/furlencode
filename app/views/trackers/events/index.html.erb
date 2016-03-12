@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Trackers Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tracker</th>
+      <th>Event name</th>
+      <th>Value</th>
+      <th>Referrer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trackers_events.each do |trackers_event| %>
+      <tr>
+        <td><%= trackers_event.tracker_id %></td>
+        <td><%= trackers_event.event_name %></td>
+        <td><%= trackers_event.value %></td>
+        <td><%= trackers_event.referrer %></td>
+        <td><%= link_to 'Show', trackers_event %></td>
+        <td><%= link_to 'Edit', edit_trackers_event_path(trackers_event) %></td>
+        <td><%= link_to 'Destroy', trackers_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event', new_trackers_event_path %>

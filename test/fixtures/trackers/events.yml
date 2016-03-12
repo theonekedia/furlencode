@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tracker_id: 1
+  event_name: MyString
+  value: MyString
+  referrer: MyString
+
+two:
+  tracker_id: 1
+  event_name: MyString
+  value: MyString
+  referrer: MyString

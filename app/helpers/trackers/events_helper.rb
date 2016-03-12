@@ -1,0 +1,2 @@
+module Trackers::EventsHelper
+end

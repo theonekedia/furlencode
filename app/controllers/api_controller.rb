@@ -48,7 +48,7 @@ class ApiController < ApplicationController
 		if categories.length == 0
 			category = Category.new(category_params)
 		    if category.save!
-		    	response.category = Category.where(id: category.id).select(:id, :name)
+		    	response['category'] = Category.where(id: category.id).select(:id, :name)
 		    	response.merge! ::Api::ApiStatusList::OK
 		        render json: response
 		    else
@@ -61,7 +61,7 @@ class ApiController < ApplicationController
 
 	def stores
 		response = Hash.new
-		stores = Store.all.select(:id,:name, :latitude, :longitude, :rating).as_json
+		stores = Store.all.select(:id,:name, :latitude, :longitude, :rating, :category_id).as_json
 		response['result'] = stores
 		response.merge! ::Api::ApiStatusList::OK
 		render json: response
@@ -73,7 +73,7 @@ class ApiController < ApplicationController
 		if stores.length == 0
 			store = Store.new(store_params)
 		    if store.save!
-		    	response['store'] = Store.where(id: store.id).select(:id,:name,:latitude,:longitude,:rating).as_json
+		    	response['store'] = Store.where(id: store.id).select(:id,:name,:latitude,:longitude,:rating, :category_id).as_json
 		    	response.merge! ::Api::ApiStatusList::OK
 		        render json: response
 		    else
@@ -85,19 +85,42 @@ class ApiController < ApplicationController
 	end
 
 	def store
-		# response = Hash.new
-		# if params[:id]
-		# 	store = Store.includes(reviews: [:user]).where(id: params[:id]).map{ |store|
-		# 		id: store.id, name: store.name, longitude: store.longitude, latitude: store.latitude,
-		# 		reviews: {store.reviews.map{|review| 
-		# 			liked: review.liked,
-		# 			critic: review.critic,
-		# 			user: review.user.name
-		# 			}
-		# 		}
-		# 	}
-		# end
-		render nothing: true
+		response = Hash.new
+		if params[:id]
+			store = Store.includes(reviews: [:user]).where(id: params[:id]).map{|store|{
+				id: store.id, name: store.name, longitude: store.longitude, latitude: store.latitude,
+				category_id: store.category_id,
+				reviews: store.reviews.map{|review| {
+						liked: review.liked,
+						critic: review.critic,
+						user: review.user.name}
+					}
+				}
+			}
+		    response.merge! ::Api::ApiStatusList::OK
+			response['store'] = store
+			render json: response
+		else
+			render json: ::Api::ApiStatusList::UNKNOWN_ERROR, status: 400
+		end
+	end
+
+	def review
+		response = Hash.new
+		if params[:user_id] && params[:store_id]
+			review = Stores::Review.find_or_initialize_by(user_id: params[:user_id], store_id: params[:store_id])
+			review.liked = params[:liked]
+			review.critic = params[:critic]
+			if review.save!
+		    	response['review'] = Stores::Review.where(id: review.id).select(:liked, :critic, :store_id, :user_id).as_json
+		    	response.merge! ::Api::ApiStatusList::OK
+		        render json: response
+		    else
+		        render json: ::Api::ApiStatusList::UNKNOWN_ERROR, status: 400
+		    end
+		else
+			render json: ::Api::ApiStatusList::STORE_ALREADY_EXIST, status: 400
+		end
 	end
 
 	private

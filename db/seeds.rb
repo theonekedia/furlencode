@@ -26,8 +26,8 @@ store = ['Cigrate', "Snacks", "Chai/Coffee", "Petrol", 'Medical shop', 'Hospital
 store.each do |c|
 	store = Store.find_or_initialize_by(name: ('Night ' + c))
 	if store.new_record?
-		store.latitude = 12.9667 + Random.rand(1..1000)
-		store.longitude = 77.5667 + Random.rand(1..1000)
+		store.latitude = 12.9667 + Random.rand(0.00009..1.1)
+		store.longitude = 77.5667 + Random.rand(0.00009..1.1)
 		store.rating = Random.rand(100)
 		store.user_id = Random.rand(1..10)
 		store.category_id = Random.rand(1..6)

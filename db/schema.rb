@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312140643) do
+ActiveRecord::Schema.define(version: 20160312175455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 20160312140643) do
     t.string   "event"
     t.string   "data"
     t.string   "page"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trackers_events", force: :cascade do |t|
+    t.integer  "tracker_id"
+    t.string   "event_name"
+    t.string   "value"
+    t.string   "referrer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tracker:</strong>
+  <%= @trackers_event.tracker_id %>
+</p>
+
+<p>
+  <strong>Event name:</strong>
+  <%= @trackers_event.event_name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @trackers_event.value %>
+</p>
+
+<p>
+  <strong>Referrer:</strong>
+  <%= @trackers_event.referrer %>
+</p>
+
+<%= link_to 'Edit', edit_trackers_event_path(@trackers_event) %> |
+<%= link_to 'Back', trackers_events_path %>
