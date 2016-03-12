@@ -6,7 +6,7 @@ ActionMailer::Base.logger = Logger.new('log/mailer.log')
 ActionMailer::Base.default :charset => "utf-8"
 
 ActionMailer::Base.smtp_settings = {
-  :address              => "smtp.gmail.com",
+  :address              => "smtp.hobbyst.co",
   :port                 => "587",
   :domain               => 'hobbyst.co',
   :user_name            => ENV["email_user"],

@@ -89,11 +89,12 @@ class ApiController < ApplicationController
 		if params[:id]
 			store = Store.includes(reviews: [:user]).where(id: params[:id]).map{|store|{
 				id: store.id, name: store.name, longitude: store.longitude, latitude: store.latitude,
-				category_id: store.category_id,
+				category_id: store.category_id, rating: store.rating,
 				reviews: store.reviews.map{|review| {
 						liked: review.liked,
 						critic: review.critic,
-						user: review.user.name}
+						user: review.user.name,
+						user_id: review.user.id}
 					}
 				}
 			}
