@@ -1,5 +1,5 @@
 class UserSignup < ApplicationMailer
-  default from: ENV['email']
+  default from: ENV['email_user']
   def signup_mailer id
     @user = User.find(id)
     mail( :to => @user.email,

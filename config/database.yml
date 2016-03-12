@@ -25,3 +25,5 @@ test:
 production:
   <<: *default
   database: furlenco_prod
+  username: rails
+  password: uJ5YK9tYUe
