@@ -1,6 +1,94 @@
-<% @employee %>
-<% @trackers.each do |tracker| %>
-	<% tracker.events.each do |event| %>
-		<%= event.event_name %>
+<div class="admin-info">
+	<div class="admin"><%= @employee.username %></div> 
+	<div class="website"><%= @employee.website %></div>
+</div>
+<div class="tracking-info">
+	<% @trackers.each do |tracker| %>
+		<div class="tracker"> 
+			<div class="user">
+				<li class='name'>
+					UID
+				</li>
+				<li class='value'>
+					<%= tracker.uid %>
+				</li>
+			</div> 
+			<div class="event-name">
+				<li class='name'>
+					Event
+				</li>
+				<li class='value'>
+					<%= tracker.event %>
+				</li>
+			</div> 
+			<div class="event">
+				<% tracker.events.each do |event| %>
+					<div class="event-list">
+						<li class='name'>
+							<%= event.event_name %>
+						</li>
+						<li class='value'>
+							<%= event.value %>
+						</li>	
+					</div>	
+				<% end %>
+			</div>
+			<div class="referrer">
+				<li class='name'>
+					referrer
+				</li>
+				<li class='value'>
+					<%= tracker.referrer %>
+				</li>
+			</div>	
+			<div class="url">
+				<li class='name'>
+					Page
+				</li>
+				<li class='value'>
+					<%= link_to ('http://' + tracker.url + tracker.page) %>
+				</li>
+			</div>	
+		</div>
 	<% end %>
-<% end %>
+	<%= will_paginate @trackers %>
+</div>
+
+<style>
+	.tracker{
+		border: 1px solid #eee;
+	    padding: 10px;
+	    text-align: center;
+	}
+	.user, .event-name, .referrer, .url{
+		display: inline-block;
+	}
+	.user li, .event-name li, .referrer li, .url li{
+		list-style: none;
+		
+	}
+	
+	 li{
+		list-style: none;
+		min-width: 100px;
+		padding: 10px;
+		border-bottom: 5px;
+	}
+	.event li.name{
+		background: #00E7FF;
+	}
+	.event li.value{
+		background: #2577A7;
+	}
+	.event-list{
+		display: inline-block;
+		height: 50px;
+    	text-align: center;
+    	color: white;
+	}
+	a:hover{
+		text-decoration: none;
+		color: black;
+		background-color: transparent;
+	}
+</style>

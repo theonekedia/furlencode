@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employee = Employee.where(id: loggedin_employee).first
-    @trackers = Tracker.includes(:events).where(employee_id: @employee.id)
+    @trackers = Tracker.includes(:events).where(employee_id: @employee.id).paginate(:page => params[:page], per_page: 50)
   end
 
   # GET /employees/1

@@ -6,7 +6,7 @@ class TrackerJob < ActiveJob::Base
     track = Tracker.find(track_id)
     # set input track point
     if track
-      employee = Employee.where("lower(website) like ?", "%#{track.website}%")
+      employee = Employee.where("lower(website) like ?", "%#{track.url.split(':').first}%")
       track.employee_id = employee.first.id if (employee.length > 0)
       track.save!
       JSON.parse(track.data).each do |key,value|
