@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   match "employees/sign_in" => "employees#employee_sign_in", :as => "employee_sign_in", via: [:post, :get]
   match "employees/logout" => "employees#employee_logout", :as => "logout_employee", via: [:post, :get]
   match "employees/login" => "employees#employee_login", :via => [:post]
+  match "admin/:filter" => "employees#filter", :via => [:get]
   resources :categories
   namespace :users do
     resources :visits
@@ -26,7 +27,8 @@ Rails.application.routes.draw do
   match 'api/stores' => 'api#new_store', via: [:put,:post]
   match 'api/reviews' => 'api#review', via: [:put,:post]
   match 'api/store/:id' => 'api#store', via: [:get]
-  match 'api/visit' => 'api#visit', via: [:put,:post]
+  match 'api/visit' => 'api#store_status', via: [:put,:post]
+  match 'api/visits' => 'api#visits', via: [:put,:post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

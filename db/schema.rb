@@ -82,6 +82,9 @@ ActiveRecord::Schema.define(version: 20160312175455) do
   create_table "users_visits", force: :cascade do |t|
     t.datetime "date"
     t.boolean  "status"
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.string   "purpose"
   end
 
 end

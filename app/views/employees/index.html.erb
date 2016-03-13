@@ -3,59 +3,74 @@
 	<div class="website"><%= @employee.website %></div>
 </div>
 <div class="tracking-info">
-	<% @trackers.each do |tracker| %>
-		<div class="tracker"> 
-			<div class="user">
-				<li class='name'>
-					UID
-				</li>
-				<li class='value'>
-					<%= tracker.uid %>
-				</li>
-			</div> 
-			<div class="event-name">
-				<li class='name'>
-					Event
-				</li>
-				<li class='value'>
-					<%= tracker.event %>
-				</li>
-			</div> 
-			<div class="event">
-				<% tracker.events.each do |event| %>
-					<div class="event-list">
-						<li class='name'>
-							<%= event.event_name %>
-						</li>
-						<li class='value'>
-							<%= event.value %>
-						</li>	
-					</div>	
-				<% end %>
-			</div>
-			<div class="referrer">
-				<li class='name'>
-					referrer
-				</li>
-				<li class='value'>
-					<%= tracker.referrer %>
-				</li>
-			</div>	
-			<div class="url">
-				<li class='name'>
-					Page
-				</li>
-				<li class='value'>
-					<%= link_to ('http://' + tracker.url + tracker.page) %>
-				</li>
-			</div>	
-		</div>
-	<% end %>
+	<%# @trackers.each do |tracker| %>
+		<table class='table table-bordered'>
+		  <thead>
+		    <tr>
+		      <th>Uid</th>
+		      <th>Event</th>
+		      <th>Referrer</th>
+		      <th>Page</th>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @trackers.each do |tracker| %>
+		      <tr>
+		        <td><a href="/admin/<%= tracker.uid %>?type=uid"><%= tracker.uid %></a></td>
+		        <td><a href="/admin/<%= tracker.event %>?type=event"><%= tracker.event %></a></td>
+		        <td><a href="/admin/<%= tracker.referrer %>?type=referrer"><%= tracker.referrer %></a></td>
+		        <td><%= ('http://' + tracker.url + tracker.page) %></td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		      </tr>
+	          <tr>
+	        	<!-- <td> -->
+					<!-- <table class='table table-bordered'> -->
+					  <!-- <thead> -->
+					    <!-- <tr> -->
+							<%# tracker.events.each do |event| %>
+						      <!-- <th><%#= event.event_name %></th>
+							<%# end %>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<tr> -->
+					  		<% tracker.events.each do |event| %>
+						      <td><%= event.event_name %></td>
+						  		
+						  		<td>
+						  			<%= event.value %>
+						  		</td>
+					  		<% end %>
+					  	<!-- </tr>
+					  <tbody>
+					</table>
+				</td> -->
+	          </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	<%# end %>
 	<%= will_paginate @trackers %>
 </div>
 
 <style>
-	.tracker{
+	/*.tracker{
 		border: 1px solid #eee;
 	    padding: 10px;
 	    text-align: center;
@@ -65,7 +80,7 @@
 	}
 	.user li, .event-name li, .referrer li, .url li{
 		list-style: none;
-		
+
 	}
 	
 	 li{
@@ -90,5 +105,5 @@
 		text-decoration: none;
 		color: black;
 		background-color: transparent;
-	}
+	}*/
 </style>

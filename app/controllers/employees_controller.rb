@@ -5,7 +5,24 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employee = Employee.where(id: loggedin_employee).first
-    @trackers = Tracker.includes(:events).where(employee_id: @employee.id).paginate(:page => params[:page], per_page: 50)
+    @trackers = Tracker.includes(:events).where(employee_id: @employee.id).paginate(:page => params[:page], per_page: 50).order('id desc')
+  end
+
+  def filter
+    key = params[:type].to_sym
+    @employee = Employee.where(id: loggedin_employee).first
+    @trackers = Tracker.includes(:events).where(employee_id: @employee.id, params[:type] => params[:filter] ).paginate(:page => params[:page], per_page: 50)
+    render 'index'
+  end
+
+  def charts
+    @employee = Employee.where(id: loggedin_employee).first
+    @total_trackers = Tracker.where(employee_id: @employee.id).count
+    @total_data_type = Tracker.joins(:events).where(employee_id: @employee.id).select('trackers_events.event_name').uniq
+    @total_events = Tracker.joins(:events).where(employee_id: @employee.id).select('trackers.event').uniq
+    # @total_browser = 
+    # @total_screen_type = 
+    # @total_page =  
   end
 
   # GET /employees/1

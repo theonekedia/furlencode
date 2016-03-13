@@ -124,6 +124,32 @@ class ApiController < ApplicationController
 		end
 	end
 
+	def store_status
+		response = Hash.new
+		if params[:store_id]
+			visit = Users::Visit.new(store_id: params[:store_id])
+			visit.user_id = params[:user_id]
+			visit.purpose = params[:purpose]
+			visit.date = Time.parse(params[:time])
+			visit.status = params[:status]
+			visit.save!
+		    response.merge! ::Api::ApiStatusList::OK
+			response['visit'] = visit
+			render json: response
+		else
+			render json: ::Api::ApiStatusList::UNKNOWN_ERROR, status: 400
+		end
+	end
+
+	def visits
+		response = Hash.new
+		visits = Users::Visit.all.where(user_id: params[:user_id], store_id: params[:store_id])
+		last_visit = visits.order(:id).last
+		response['result'] = { count: visits.count, last_visited: last_visit ? last_visit.date : '', purpose: last_visit ? last_visit.purpose : '' }
+		response.merge! ::Api::ApiStatusList::OK
+		render json: response
+	end
+
 	private
 	def category_params
       params.permit(:name)
